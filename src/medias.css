@@ -1,0 +1,348 @@
+@media (max-width: 991px) {
+    #cursor {
+        display: none;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+
+    }
+
+    .about-row {
+        flex-direction: column-reverse;
+    }
+
+    #cursor {
+        position: fixed;
+        top: -100vh;
+        left: -100vw;
+    }
+
+    /*navbar*/
+    nav {
+        height: 6em;
+        background: black;
+        margin-top: 36px;
+        position: relative;
+        z-index: 1000;
+    }
+
+    nav .nav-container ul {
+        display: none;
+        height: 0;
+    }
+
+    nav .nav-container ul.openul {
+        animation: openNavBar .5s ease-in-out forwards;
+    }
+
+    nav .nav-container ul.closeul {
+        animation: closenavbar .5s ease-in-out forwards;
+
+    }
+
+    .col-lg-7.nav-container {
+        background: black;
+        width: 100vw;
+        position: absolute;
+        left: 0;
+        top: 6em;
+        text-align: center;
+
+    }
+
+    nav .nav-container ul li:nth-of-type(1) {
+        margin-top: 1rem;
+    }
+
+    nav .nav-container ul li {
+        padding: 1.8rem 1.5rem;
+        width: 60%;
+        margin: auto;
+        color: white;
+    }
+
+    nav .nav-container ul li span {
+        background-color: white;
+    }
+
+    nav .nav-container ul li:hover {
+        color: black;
+        transition: all ease-in-out .5s;
+    }
+
+    .open-button {
+        width: 3em;
+        height: 1.5em;
+        top: 36px;
+        display: block;
+        position: absolute;
+        right: 13%;
+        cursor: pointer;
+    }
+
+    .open-button span:nth-of-type(1) {
+        position: absolute;
+        top: 0;
+        left: 5px;
+        background: white;
+        width: 2em;
+        height: 3px;
+
+    }
+
+    .open-button span:nth-of-type(2) {
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        background: white;
+        width: 2em;
+        height: 3px;
+
+    }
+
+    .open-button span:nth-of-type(3) {
+        position: absolute;
+        top: 16px;
+        left: 5px;
+        background: white;
+        width: 2em;
+        height: 3px;
+
+    }
+
+    /*button animation*/
+    /*open animation*/
+
+    .open-button.opened span:nth-of-type(1) {
+        animation: rotatefirst 250ms ease-in forwards;
+    }
+
+    .open-button.opened span:nth-of-type(2) {
+        animation: rotatesecond 250ms ease-in forwards;
+    }
+
+    .open-button.opened span:nth-of-type(3) {
+        animation: fade 250ms ease-in forwards;
+    }
+
+    /*close animation*/
+
+    .open-button.closed span:nth-of-type(1) {
+        animation: rotateclosefirst 250ms ease-in forwards;
+    }
+
+    .open-button.closed span:nth-of-type(2) {
+        animation: rotateclosesecond 250ms ease-in forwards;
+    }
+
+    .open-button.closed span:nth-of-type(3) {
+        animation: fadein 250ms ease-in forwards;
+    }
+
+    /*key frames for animations (open)*/
+
+    @keyframes rotatefirst {
+
+        from {
+            transform: rotate(0deg);
+            top: 0px;
+        }
+
+        to {
+            transform: rotate(129deg);
+            top: 1px;
+        }
+    }
+
+    @keyframes rotatesecond {
+
+        from {
+            transform: rotate(0deg);
+            top: 0px;
+        }
+
+        to {
+            transform: rotate(40deg);
+            top: 1px;
+            display: none;
+        }
+    }
+
+    @keyframes fade {
+
+        from {
+            opacity: 1;
+            left: 0px;
+        }
+
+        to {
+            left: 100px;
+            opacity: 0;
+        }
+    }
+
+    @keyframes openNavBar {
+        from {
+            height: 0px;
+        }
+
+        to {
+            height: 20rem;
+        }
+    }
+
+    @keyframes closenavbar {
+        from {
+            height: 20rem;
+            display: block;
+        }
+
+        to {
+            height: 0px;
+            display: none;
+        }
+    }
+
+    /*key frames for animations (close)*/
+    /*---------------------------------------*/
+    @keyframes rotateclosefirst {
+
+        from {
+            transform: rotate(129deg);
+            top: 1px;
+        }
+
+        to {
+            transform: rotate(0deg);
+            top: 0px;
+        }
+    }
+
+    @keyframes rotateclosesecond {
+
+        from {
+            transform: rotate(40deg);
+            top: 1px;
+        }
+
+        to {
+            transform: rotate(0deg);
+            top: 8px;
+        }
+    }
+
+    @keyframes fadein {
+
+        from {
+            opacity: 0;
+            left: 100px;
+        }
+
+        to {
+            left: 5px;
+            opacity: 1;
+        }
+    }
+
+    /*navbar*/
+
+}
+
+#cursor {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: rgb(74, 88, 222);
+    background: linear-gradient(90deg, rgba(74, 88, 222, 1) 25%, rgba(129, 80, 237, 1) 83%);
+    border-radius: 1em;
+    transform: scale(1);
+    z-index: 99999;
+    pointer-events: none
+}
+
+#cursor::before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid rgba(74, 88, 222, 1);
+    top: -14px;
+    left: -14px;
+}
+
+#cursor.white::before {
+    border: 2px solid white;
+
+}
+
+#cursor.clicked::before {
+    animation: click .5s ease forwards;
+
+}
+
+@keyframes click {
+    from {
+        background-color: transparent;
+        transform: scale(0);
+        border: 1px;
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(2);
+        background: rgb(74, 88, 222);
+        background: linear-gradient(90deg, rgba(74, 88, 222, 1) 25%, rgba(129, 80, 237, 1) 83%);
+        border: none;
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+
+    }
+}
+
+* {
+    cursor: none;
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .home .content-container h1 span {
+        font-size: 2rem;
+    }
+
+    .home .content-container p {
+        font-size: 1.4rem;
+    }
+
+    .col-md-6 {
+        display: flex;
+        align-items: center;
+    }
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    .works-container .col-md-4 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+        height: 1.9rem;
+        background-color: lightgrey;
+        margin: 10px 0;
+    }
+
+
+}

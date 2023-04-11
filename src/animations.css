@@ -1,0 +1,14 @@
+@keyframes navbar-animation {
+    from{
+        top: -100px;
+    }
+    to{
+        top:-36px
+    }
+    
+}
+
+.fixed{
+    animation: navbar-animation 1s ease;
+
+}
