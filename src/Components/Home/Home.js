@@ -1,8 +1,8 @@
 import { Component } from "react";
 import developer from "../../images/giphy.gif"
-import clown from "../../images/clown.jpg"
+import cv from "../../images/Cv.pdf"
 import hand from "../../images/hand.png"
-
+import { Link } from "react-scroll";
 
 
 class Home extends Component{
@@ -22,7 +22,7 @@ class Home extends Component{
         /*this function will open the nav bar */
       
         return(
-           <div className="home container">
+           <div className="home container" id='page'>
             
             <div className="row">
                 <div className="col-md-6" >
@@ -33,11 +33,14 @@ class Home extends Component{
                       
                         <div className="buttons-container"  >
                         <div className="button-hire" data-aos="fade-right" data-aos-delay="900" data-aos-duration="1000">
+                           
+                            <Link to="contact" smooth={true} duration={500} spy={true}  offset={-100}>
                             <span>Hire me</span>
+                                    </Link>
                         </div>
 
                         <div className="button-cv" data-aos="fade-left" data-aos-delay="900" data-aos-duration="1000">
-                            <span><a href={clown} download>Get cv</a></span>
+                            <span><a href={cv} download>Get cv</a></span>
                         </div>
                     </div>
                     </div>

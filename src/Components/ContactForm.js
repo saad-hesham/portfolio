@@ -1,88 +1,142 @@
-import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
-function ContactForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+import { useRef, useState } from "react";
+const ContactForm = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const form = useRef();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const validate = () => {
 
-    // Validation logic
-    const errors = {};
-    if (!name) {
-      errors.name = 'Name is required';
-    }
+    let errors = {};
+    let isValid = true;
     if (!email) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
+      isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = 'Email is invalid';
+      errors.email = "Email is invalid";
+      isValid = false;
+    }
+    if (!name) {
+      errors.name = "Name is required";
+      isValid = false;
     }
     if (!subject) {
-      errors.subject = 'Subject is required';
+      errors.subject = "Subject is required";
+      isValid = false;
     }
     if (!message) {
-      errors.message = 'Message is required';
+      errors.message = "Message is required";
+      isValid = false;
     }
+    setErrors(errors);
+    return isValid;
+  };
 
-    if (Object.keys(errors).length === 0) {
-      // Send email logic
-      window.location.href = `mailto:saadhesham626@gmail.com?subject=${subject}&body=${message}%0D%0A%0D%0AFrom: ${name} (${email})`;
-    } else {
-      setErrors(errors);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_hgv4wwe', 'template_jl0xfli', form.current, 'irT832AFiNyH3Biqx')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+        setEmail("");
+        setName("");
+        setSubject("");
+        setMessage("");
+        setErrors({});
+        }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-        {errors.name && <span className="error">{errors.name}</span>}
+    <form ref={form}id='contact'>
+
+    <div className="container">
+    <h1>Contact Me</h1>
+
+      <div className="row">
+
+        <div className="col-md-6">
+          <div className="form-group">
+            <label htmlFor="email">Email address</label>
+
+            <input
+              type="email"
+              name='name'
+              className={`form-control ${errors.email ? "is-invalid" : ""}`}
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email && (
+              <div className="invalid-feedback">{errors.email}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              className={`form-control ${errors.name ? "is-invalid" : ""}`}
+              placeholder="Enter name"
+              value={name}
+              name='email'
+              onChange={(e) => setName(e.target.value)}
+            />
+            {errors.name && (
+              <div className="invalid-feedback">{errors.name}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <label htmlFor="subject">Subject</label>
+            <input
+              type="text"
+              className={`form-control ${errors.subject ? "is-invalid" : ""}`}
+              placeholder="Enter subject"
+              value={subject}
+              name='subject'
+              onChange={(e) => setSubject(e.target.value)}
+            />
+            {errors.subject && (
+              <div className="invalid-feedback">{errors.subject}</div>
+            )}
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              className={`form-control ${errors.message ? "is-invalid" : ""}`}
+              rows="5"
+              placeholder="Enter message"
+              value={message}
+              name='message'
+              onChange={(e) => setMessage(e.target.value)}
+            ></textarea>
+            {errors.message && (
+              <div className="invalid-feedback">{errors.message}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            >
+              Send Message
+            </button>
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        {errors.email && <span className="error">{errors.email}</span>}
-      </div>
-      <div>
-        <label htmlFor="subject">Subject:</label>
-        <input
-          type="text"
-          name="subject"
-          id="subject"
-          value={subject}
-          onChange={(event) => setSubject(event.target.value)}
-        />
-        {errors.subject && <span className="error">{errors.subject}</span>}
-      </div>
-      <div>
-        <label htmlFor="message">Message:</label>
-        <textarea
-          name="message"
-          id="message"
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-        ></textarea>
-        {errors.message && <span className="error">{errors.message}</span>}
-      </div>
-      <button type="submit">Send</button>
+    </div>
     </form>
   );
-}
+};
 
 export default ContactForm;

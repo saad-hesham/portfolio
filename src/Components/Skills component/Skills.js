@@ -1,5 +1,5 @@
 import Progress from "./ProgressBar";
-import clown from "../../images/clown.jpg"
+import cv from "../../images/Cv.pdf"
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from "../../Redux/Store";
 function Skills() {
@@ -13,7 +13,7 @@ dispatch(actions.toggleSlider())
 
 
         return (
-            <div className="skills-section">
+            <div className="skills-section" id="about">
                 <div className="container">
                     <div className="row about-row">
                         <div className="col-lg-6 skills-bars-container">
@@ -43,7 +43,7 @@ dispatch(actions.toggleSlider())
                         </div>
 
                         <div className="button-cv">
-                            <span><a href={clown} download>Download CV</a></span>
+                            <span><a href={cv} download>Download CV</a></span>
                         </div>
                     </div>
                         </div>

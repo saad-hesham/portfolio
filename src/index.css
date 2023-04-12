@@ -471,11 +471,36 @@ div.progress-block {
     transition: all ease-in .5s;
 }
 .overlay p {
-    font-size: 15px;
+    font-size: 17px;
     padding: 1rem;
 }
 .overlay >div {
     display: flex;
     justify-content: center;
     margin: -21px 0px;
+}
+button.btn.btn-primary {
+    background: linear-gradient(90deg, rgba(74, 88, 222, 1) 25%, rgba(129, 80, 237, 1) 83%);
+    border: none;
+    margin: 1rem;
+
+}
+textarea{
+    resize: none;
+}
+form{
+    margin-top: 10rem;
+}
+form h1{
+    margin: 3rem 0rem;
+    position: relative;
+}
+a.active ~*{
+    
+    transform: scale(1) !important;
+    
+
+}
+a.active{
+    color: white!important; 
 }

@@ -3,6 +3,8 @@
         display: none;
     }
 
+
+
     .progress-bar-container {
         width: 100%;
 
@@ -345,4 +347,11 @@ body {
     }
 
 
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    form .col-md-6 {
+        display: block;
+        align-items: center;
+    }
 }

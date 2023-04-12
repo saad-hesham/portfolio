@@ -10,6 +10,7 @@ import { faTimes  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PortofolioSection from "./Components/Portofolio/PortofolioSection";
 import ContactForm from "./Components/ContactForm";
+import Footer from "./Components/Footer";
 function App() {
   const state = useSelector(state => state.openSlide);
   const dispatch = useDispatch()
@@ -33,6 +34,8 @@ function App() {
 </button>
 </div> :null}
 <PortofolioSection/>
+<ContactForm/>
+<Footer/>
 
 </main>
   );
