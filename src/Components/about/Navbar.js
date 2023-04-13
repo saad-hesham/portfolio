@@ -76,7 +76,7 @@ class Navbar extends Component {
                                 </li>
                                 <li>
                                     
-                                    <Link to="contact" smooth={true} duration={500} spy={true}  offset={-100}>
+                                    <Link to="contact" smooth={true} duration={500} spy={true}  offset={0}>
                                     CONTACT
                                     </Link>
                                     <span></span>

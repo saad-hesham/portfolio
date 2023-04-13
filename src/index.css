@@ -488,8 +488,11 @@ button.btn.btn-primary {
 textarea{
     resize: none;
 }
-form{
-    margin-top: 10rem;
+form {
+    margin: 15rem 0rem;
+    height: 28rem;
+    z-index: 13;
+    position: relative;
 }
 form h1{
     margin: 3rem 0rem;
